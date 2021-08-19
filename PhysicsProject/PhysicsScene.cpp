@@ -48,7 +48,7 @@ void PhysicsScene::update(float deltaTime)
 				PhysicsObject* object2 = *inner;
 
 				//Collision check
-				sphereToSphere(dynamic_cast<Sphere*>(object1), dynamic_cast<Sphere*>(object2));
+				//sphereToSphere(dynamic_cast<Sphere*>(object1), dynamic_cast<Sphere*>(object2));
 			}
 		}
 	}

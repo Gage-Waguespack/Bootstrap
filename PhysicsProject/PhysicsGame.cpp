@@ -18,11 +18,8 @@ bool PhysicsGame::startup()
 	m_scene->setTimeStep(0.01f);
 	m_scene->setGravity({ 0.0f, 0.0f });
 
-	Sphere* ball = new Sphere(glm::vec2(-20.0f, 0.0f), glm::vec2(10.0f, 0.0f), 1, 5, glm::vec4(0.0f, 0.6f, 0.9f, 1.0f));
+	Sphere* ball = new Sphere(glm::vec2(0.0f, 0.0f), glm::vec2(0.0f, 0.0f), 1, 20, glm::vec4(0.0f, 0.6f, 0.9f, 1.0f));
 	m_scene->addActor(ball);
-
-	Sphere* orb = new Sphere(glm::vec2(20.0f, 0.0f), glm::vec2(-10.0f, 0.0f), 1, 5, glm::vec4(0.8f, 0.2f, 0.1f, 1.0f));
-	m_scene->addActor(orb);
 
 	return true;
 }
@@ -44,9 +41,15 @@ void PhysicsGame::update(float deltaTime)
 	m_scene->update(deltaTime);
 
 	//Exit on Esc
-	if (input->isKeyDown(aie::INPUT_KEY_ESCAPE)) 
+	if (input->isKeyDown(aie::INPUT_KEY_ESCAPE))
 	{
 		quit();
+	}
+
+	//When you press space, use the balls' mass to launch it out of the screen(into space)
+	if (input->isKeyDown(aie::INPUT_KEY_SPACE))
+	{
+
 	}
 }
 

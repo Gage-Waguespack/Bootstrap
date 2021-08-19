@@ -22,6 +22,8 @@ public:
 	void setTimeStep(const float timeStep) { m_timeStep = timeStep; }
 	float getTimeStep() const { return m_timeStep; }
 
+	static bool sphereToSphere(Sphere*, Sphere*);
+
 private:
 	glm::vec2 m_gravity;
 	float m_timeStep;

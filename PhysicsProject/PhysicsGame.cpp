@@ -25,10 +25,16 @@ bool PhysicsGame::startup()
 
 	Sphere* ball1 = new Sphere(glm::vec2(20.0f, 0.0f), glm::vec2(), 5.5f, 2, glm::vec4(0.9f, 0.3f, 0.5f, 1.0f));
 	m_scene->addActor(ball1);
-	Sphere* ball2 = new Sphere(glm::vec2(23.0f, 3.0f), glm::vec2(), 5.5f, 2, glm::vec4(0.9f, 0.3f, 0.5f, 1.0f));
+	Sphere* ball2 = new Sphere(glm::vec2(24.0f, 2.4f), glm::vec2(), 5.5f, 2, glm::vec4(0.9f, 0.3f, 0.5f, 1.0f));
 	m_scene->addActor(ball2);
-	Sphere* ball3 = new Sphere(glm::vec2(23.0f, -3.0f), glm::vec2(), 5.5f, 2, glm::vec4(0.9f, 0.3f, 0.5f, 1.0f));
+	Sphere* ball3 = new Sphere(glm::vec2(24.0f, -2.4f), glm::vec2(), 5.5f, 2, glm::vec4(0.9f, 0.3f, 0.5f, 1.0f));
 	m_scene->addActor(ball3);
+	Sphere* ball4 = new Sphere(glm::vec2(28.0f, 4.5f), glm::vec2(), 5.5f, 2, glm::vec4(0.9f, 0.3f, 0.5f, 1.0f));
+	m_scene->addActor(ball4);
+	Sphere* ball5 = new Sphere(glm::vec2(28.0f, 0.0f), glm::vec2(), 5.5f, 2, glm::vec4(0.9f, 0.3f, 0.5f, 1.0f));
+	m_scene->addActor(ball5);
+	Sphere* ball6 = new Sphere(glm::vec2(28.0f, -4.5f), glm::vec2(), 5.5f, 2, glm::vec4(0.9f, 0.3f, 0.5f, 1.0f));
+	m_scene->addActor(ball6);
 
 
 	Plane* topWall = new Plane(glm::vec2(0.0f, -1.8f), -53.0f, glm::vec4(0.2f, 0.9f, 0.5f, 1.0f));

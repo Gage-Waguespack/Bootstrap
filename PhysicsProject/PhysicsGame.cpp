@@ -19,25 +19,25 @@ bool PhysicsGame::startup()
 	m_scene->setTimeStep(0.01f);
 	m_scene->setGravity({ 0.0f, 0.0f });
 
-	Sphere* cueBall = new Sphere(glm::vec2(-40.0f, 0.0f), glm::vec2(), 1, 2, glm::vec4(0.2f, 0.9f, 0.8f, 1.0f));
+	Sphere* cueBall = new Sphere(glm::vec2(-40.0f, 0.0f), glm::vec2(), 6, 2, glm::vec4(0.2f, 0.9f, 0.8f, 1.0f));
 	m_scene->addActor(cueBall);
 	cueBall->applyForce(glm::vec2(80.0f, 0.0f));
 
-	Sphere* ball1 = new Sphere(glm::vec2(20.0f, 0.0f), glm::vec2(), 1, 2, glm::vec4(0.9f, 0.3f, 0.5f, 1.0f));
+	Sphere* ball1 = new Sphere(glm::vec2(20.0f, 0.0f), glm::vec2(), 5.5f, 2, glm::vec4(0.9f, 0.3f, 0.5f, 1.0f));
 	m_scene->addActor(ball1);
-	Sphere* ball2 = new Sphere(glm::vec2(23.0f, 3.0f), glm::vec2(), 1, 2, glm::vec4(0.9f, 0.3f, 0.5f, 1.0f));
+	Sphere* ball2 = new Sphere(glm::vec2(23.0f, 3.0f), glm::vec2(), 5.5f, 2, glm::vec4(0.9f, 0.3f, 0.5f, 1.0f));
 	m_scene->addActor(ball2);
-	Sphere* ball3 = new Sphere(glm::vec2(23.0f, -3.0f), glm::vec2(), 1, 2, glm::vec4(0.9f, 0.3f, 0.5f, 1.0f));
+	Sphere* ball3 = new Sphere(glm::vec2(23.0f, -3.0f), glm::vec2(), 5.5f, 2, glm::vec4(0.9f, 0.3f, 0.5f, 1.0f));
 	m_scene->addActor(ball3);
 
 
-	Plane* topWall = new Plane(glm::vec2(0.0f, -1.8f), -30.0f, glm::vec4(0.2f, 0.9f, 0.5f, 1.0f));
+	Plane* topWall = new Plane(glm::vec2(0.0f, -1.8f), -53.0f, glm::vec4(0.2f, 0.9f, 0.5f, 1.0f));
 	m_scene->addActor(topWall);
-	Plane* bottomWall = new Plane(glm::vec2(0.0f, 1.8f), -30.0f, glm::vec4(0.2f, 0.9f, 0.5f, 1.0f));
+	Plane* bottomWall = new Plane(glm::vec2(0.0f, 1.8f), -53.0f, glm::vec4(0.2f, 0.9f, 0.5f, 1.0f));
 	m_scene->addActor(bottomWall);
-	Plane* leftWall = new Plane(glm::vec2(1.0f, 0.0f), -98.0f, glm::vec4(0.2f, 0.9f, 0.5f, 1.0f));
+	Plane* leftWall = new Plane(glm::vec2(1.0f, 0.0f), -96.0f, glm::vec4(0.2f, 0.9f, 0.5f, 1.0f));
 	m_scene->addActor(leftWall);
-	Plane* rightWall = new Plane(glm::vec2(-1.0f, 0.0f), -98.0f, glm::vec4(0.2f, 0.9f, 0.5f, 1.0f));
+	Plane* rightWall = new Plane(glm::vec2(-1.0f, 0.0f), -96.0f, glm::vec4(0.2f, 0.9f, 0.5f, 1.0f));
 	m_scene->addActor(rightWall);
 
 	return true;

@@ -22,6 +22,18 @@ void PhysicsScene::removeActor(PhysicsObject* actor)
 	m_actors.erase(actor);
 }
 
+//"Weird way of declaring, what is essentially a delegate"
+//Collision function pointer type
+typedef bool(*collisionCheck)(PhysicsObject*, PhysicsObject*);
+
+//Array of collision check functions
+static collisionCheck collisionFunctionArray[] =
+{
+	PhysicsScene::planeToPlane, PhysicsScene::planeToSphere, PhysicsScene::planeToBox,
+	PhysicsScene::sphereToPlane, PhysicsScene::sphereToSphere, PhysicsScene::sphereToBox,
+	PhysicsScene::boxToPlane, PhysicsScene::boxToSphere, PhysicsScene::boxToBox
+};
+
 void PhysicsScene::update(float deltaTime)
 {
 	static float accumulatedTime = 0.0f;
@@ -45,13 +57,22 @@ void PhysicsScene::update(float deltaTime)
 			innerBegin++;
 			for (auto inner = innerBegin; inner != m_actors.end(); inner++)
 			{
+				//Get the physics objects
 				PhysicsObject* object1 = *outer;
 				PhysicsObject* object2 = *inner;
+				
+				//Get the shape IDs
+				int shape1 = (int)(object1->getShapeID());
+				int shape2 = (int)(object2->getShapeID());
 
-				//Collision checks
-				sphereToSphere(object1, object2);
-				sphereToPlane(object1, object2);
-				planeToSphere(object1, object2);
+				//Find the index using: i = (y * w) + x
+				int i = (shape1 * (int)ShapeType::LENGTH) + shape2;
+				//Retrieve and call the collision check from the array
+				collisionCheck collisionFn = collisionFunctionArray[i];
+				if (collisionFn)
+				{
+					collisionFn(object1, object2);
+				}
 			}
 		}
 	}
@@ -120,6 +141,7 @@ bool PhysicsScene::sphereToSphere(PhysicsObject* object1, PhysicsObject* object2
 		glm::vec2 position1 = sphere1->getPosition();
 		glm::vec2 position2 = sphere2->getPosition();
 		glm::vec2 distanceVec = position1 - position2;
+		//Essentially A^2 + B^2 = C^2 by taking the sqrt of A^2 and B^2 you get C (meaning distance in this case)
 		float distance = glm::sqrt(distanceVec.x * distanceVec.x + distanceVec.y * distanceVec.y);
 
 		//If the distance is less than the combined radii, there is a collision

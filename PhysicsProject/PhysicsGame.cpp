@@ -14,7 +14,7 @@ bool PhysicsGame::startup()
 	setBackgroundColour(0.2f, 0.01f, 0.2f, 0.1f);
 
 	m_font = new aie::Font("../bin/font/consolas.ttf", 32);
-
+	
 	m_scene = new PhysicsScene();
 	m_scene->setTimeStep(0.01f);
 	m_scene->setGravity({ 0.0f, -10.0f });

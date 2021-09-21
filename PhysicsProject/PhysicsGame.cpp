@@ -27,8 +27,17 @@ bool PhysicsGame::startup()
 	m_scene->addActor(orb);
 	//orb->applyForce(glm::vec2(-10.0f, 0.0f));
 
-	Plane* surface = new Plane(glm::vec2(0.0f, 1.0f), -30.0f, glm::vec4(0.2f, 0.9f, 0.5f, 1.0f));
-	m_scene->addActor(surface);
+	//Plane* surface = new Plane(glm::vec2(0.0f, 1.0f), -30.0f, glm::vec4(0.2f, 0.9f, 0.5f, 1.0f));
+	//m_scene->addActor(surface);
+
+	Plane* topWall = new Plane(glm::vec2(0.0f, -1.8f), -53.0f, glm::vec4(0.2f, 0.9f, 0.5f, 1.0f));
+	m_scene->addActor(topWall);
+	Plane* bottomWall = new Plane(glm::vec2(0.0f, 1.8f), -53.0f, glm::vec4(0.2f, 0.9f, 0.5f, 1.0f));
+	m_scene->addActor(bottomWall);
+	Plane* leftWall = new Plane(glm::vec2(1.0f, 0.0f), -96.0f, glm::vec4(0.2f, 0.9f, 0.5f, 1.0f));
+	m_scene->addActor(leftWall);
+	Plane* rightWall = new Plane(glm::vec2(-1.0f, 0.0f), -96.0f, glm::vec4(0.2f, 0.9f, 0.5f, 1.0f));
+	m_scene->addActor(rightWall);
 
 	return true;
 }
@@ -48,6 +57,20 @@ void PhysicsGame::update(float deltaTime)
 	aie::Gizmos::clear();
 	
 	m_scene->update(deltaTime);
+
+	if (input->wasMouseButtonPressed(aie::INPUT_MOUSE_BUTTON_LEFT))
+	{
+		Sphere* ball = new Sphere(glm::vec2(-20.0f, 0.0f), glm::vec2(), 1, 5, glm::vec4(0.2f, 0.9f, 0.8f, 1.0f));
+		m_scene->addActor(ball);
+		ball->applyForce(glm::vec2(50.0f, 0.0f));
+	}
+
+	if (input->wasMouseButtonPressed(aie::INPUT_MOUSE_BUTTON_RIGHT))
+	{
+		Sphere* orb = new Sphere(glm::vec2(20.0f, 0.0f), glm::vec2(), 1, 5, glm::vec4(0.9f, 0.3f, 0.5f, 1.0f));
+		m_scene->addActor(orb);
+		orb->applyForce(glm::vec2(-50.0f, 0.0f));
+	}
 
 	//Exit on Esc
 	if (input->isKeyDown(aie::INPUT_KEY_ESCAPE)) 

@@ -1,3 +1,12 @@
+# BootstrapPhysics
+Description: This project is used to visualize the effects of gravity, mass, and velocity in a 2D application.
+You'll be able to spawn balls and view the result of balls colliding in a scene where only they exist.
+
+## How to use:
+Start by running the project and test the 2D physics by spawning balls with left and right click.
+When balls are spawned, you can watch how they react when colliding against different objects.
+
+
 # aieBootstrap
 
 *NOTE: This project is no longer being actively maintained*

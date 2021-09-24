@@ -1,6 +1,9 @@
 # BootstrapPhysics
-Description: This project is used to visualize the effects of gravity, mass, and velocity in a 2D application.
+## Description: 
+This project is used to visualize the effects of gravity, mass, and velocity in a 2D application.
 You'll be able to spawn balls and view the result of balls colliding in a scene where only they exist.
+
+This project can be found at: https://github.com/Gage-Waguespack/BootstrapPhysics
 
 ## How to use:
 Start by running the project and test the 2D physics by spawning balls with left and right click.

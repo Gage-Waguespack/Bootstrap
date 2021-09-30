@@ -86,6 +86,10 @@ int Engine::start()
 	int minorVersion = ogl_GetMinorVersion();
 	printf("OpenGL version %i.%i\n", majorVersion, minorVersion);
 
+	//Initialize the screen
+	glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+	glEnable(GL_DEPTH_TEST);
+
 	//Initialize the shader
 	m_shader.loadShader(
 		aie::eShaderStage::VERTEX,
@@ -131,14 +135,18 @@ int Engine::update()
 int Engine::draw()
 {
 	if (!m_window) return -5;
-
-	glfwSwapBuffers(m_window);
+	
+	//Clear the screen
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	m_shader.bind();
 
 	glm::mat4 projectionViewModel = m_projectionMatrix * m_viewMatrix * m_quad.getTransform();
+	m_shader.bindUniform("projectionViewModel", projectionViewModel);
 
 	m_quad.draw();
+
+	glfwSwapBuffers(m_window);
 
 	return 0;
 }

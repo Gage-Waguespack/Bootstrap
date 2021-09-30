@@ -35,6 +35,7 @@ void Mesh::start()
 
 	//Define the vertices for a quad
 	Vertex vertices[6];
+	m_triCount = 2;
 	//triangle 0
 	vertices[0].position = { -0.5f, 0.0f, 0.5f, 1.0f };
 	vertices[1].position = { 0.5f, 0.0f, 0.5f, 1.0f };
@@ -43,7 +44,6 @@ void Mesh::start()
 	vertices[3].position = { 0.5f, 0.0f, 0.5f, 1.0f };
 	vertices[4].position = { -0.5f, 0.0f, -0.5f, 1.0f };
 	vertices[5].position = { 0.5f, 0.0f, -0.5f, 1.0f };
-	m_triCount = 2;
 
 	//Fill vertex buffer
 	glBufferData(

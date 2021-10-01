@@ -1,5 +1,10 @@
 #include "Quad.h"
 
+Quad::Quad(glm::vec4 color) : Quad::Quad()
+{
+	m_color = color;
+}
+
 Quad::Vertex* Quad::generateVertices(unsigned int& vertexCount, unsigned int& triCount)
 {
 	Vertex* vertices = nullptr;
@@ -18,9 +23,12 @@ Quad::Vertex* Quad::generateVertices(unsigned int& vertexCount, unsigned int& tr
 	vertices[4].position = { -0.5f, 0.0f, -0.5f, 1.0f };
 	vertices[5].position = { 0.5f, 0.0f, -0.5f, 1.0f };
 
+	//Changes the color of the quad
 	for (int i = 0; i < vertexCount; i++) {
-		vertices[i].color = { 0.0f, 1.0f, 1.0f, 1.0f };
+		vertices[i].color = m_color;
 	}
+	vertices[0].color = { 1.0f, 0.0f, 0.2f, 1.0f };
+	vertices[5].color = { 0.2f, 0.0f, 1.0f, 1.0f };
 
 	return vertices;
 }

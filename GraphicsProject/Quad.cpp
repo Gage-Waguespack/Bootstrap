@@ -33,6 +33,7 @@ Quad::Vertex* Quad::generateVertices(unsigned int& vertexCount, unsigned int& tr
 	//Changes the color of individual vertices
 	//vertices[0].color = { 1.0f, 0.0f, 0.2f, 1.0f };
 	//vertices[5].color = { 0.2f, 0.0f, 1.0f, 1.0f };
+	//vertices[5].normal = { 1.0f, 1.0f, 1.0f, 0.0f };
 
 	return vertices;
 }

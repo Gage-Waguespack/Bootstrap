@@ -18,11 +18,15 @@ void main() {
 	//vec4 lightColor = vec4(0.8f, 0.2f, 0.2f, 1.0f);
 
 	//color = ambientColor + diffuseColor + specularColor
+
+	//calculate ambient color
+	vec4 ambientColor = fColor * lightAmbient;
+
 	//calculate diffuse color
 	float lambertTerm = dot(-lightNormal, surfaceNormal);
 	lambertTerm = max(0, min(1, lambertTerm));
 	vec4 diffuseColor = fColor * lightDiffuse * lambertTerm;
 
 
-	FragColor = diffuseColor;
+	FragColor = ambientColor + diffuseColor;
 }

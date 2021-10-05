@@ -11,11 +11,13 @@ void World::start()
 {
 	//Initialize the quad
 	m_quad.setTransform(glm::mat4(10.0f));
+	m_quad.setColor(glm::vec4(0.2f, 0.2f, 0.8f, 1.0f));
 	m_quad.start();
 
 	//Initialize the light
 	m_light.setDirection(glm::vec3(-1.0f));
-	m_light.setDiffuse(glm::vec4(0.2f, 0.2f, 0.8f, 1.0f));
+	m_light.setAmbient(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
+	m_light.setDiffuse(glm::vec4(0.1f, 0.2f, 0.8f, 1.0f));
 
 	//Create camera transform
 	m_camera.setTransform(glm::lookAt(

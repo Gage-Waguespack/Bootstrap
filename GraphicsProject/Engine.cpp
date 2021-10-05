@@ -15,6 +15,8 @@ Engine::Engine(int width, int height, const char* title)
 	m_width = width;
 	m_height = height;
 	m_title = title;
+
+	m_shader = new aie::ShaderProgram();
 }
 
 Engine::~Engine()
@@ -41,7 +43,7 @@ int Engine::run()
 			return exitCode;
 		}
 
-		exitCode = draw();
+		exitCode = draw(m_shader);
 		if (exitCode)
 		{
 			return exitCode;
@@ -92,16 +94,16 @@ int Engine::start()
 	glEnable(GL_DEPTH_TEST);
 
 	//Initialize the shader
-	m_shader.loadShader(
+	m_shader->loadShader(
 		aie::eShaderStage::VERTEX,
 		"simpleVert.shader"
 	);
-	m_shader.loadShader(
+	m_shader->loadShader(
 		aie::eShaderStage::FRAGMENT,
 		"simpleFrag.shader"
 	);
-	if (!m_shader.link()) {
-		printf("Shader Error: %s\n", m_shader.getLastError());
+	if (!m_shader->link()) {
+		printf("Shader Error: %s\n", m_shader->getLastError());
 		return -10;
 	}
 
@@ -121,19 +123,18 @@ int Engine::update()
 	return 0;
 }
 
-int Engine::draw()
+int Engine::draw(aie::ShaderProgram* shader)
 {
 	if (!m_window) return -5;
 	
 	//Clear the screen
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	m_shader.bind();
+	m_shader->bind();
 
-	glm::mat4 projectionViewModel = m_world->getProjectionViewModel();
-	m_shader.bindUniform("projectionViewModel", projectionViewModel);
+	m_shader->bindUniform("projectionViewMatrix", m_world->getProjectionView());
 
-	m_world->draw();
+	m_world->draw(shader);
 
 	glfwSwapBuffers(m_window);
 

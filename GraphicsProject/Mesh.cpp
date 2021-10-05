@@ -33,20 +33,6 @@ void Mesh::start()
 	glBindVertexArray(m_vertexArrayObject);
 	glBindBuffer(GL_ARRAY_BUFFER, m_vertexBufferObject);
 
-
-	//vertexCount = 6;
-	////Define the vertices for a quad
-	//vertices = new Vertex[vertexCount];
-
-	////triangle 0
-	//vertices[0].position = { -0.5f, 0.0f, 0.5f, 1.0f };
-	//vertices[1].position = { 0.5f, 0.0f, 0.5f, 1.0f };
-	//vertices[2].position = { -0.5f, 0.0f, -0.5f, 1.0f };
-	////triangle 1
-	//vertices[3].position = { 0.5f, 0.0f, 0.5f, 1.0f };
-	//vertices[4].position = { -0.5f, 0.0f, -0.5f, 1.0f };
-	//vertices[5].position = { 0.5f, 0.0f, -0.5f, 1.0f };
-
 	//Generate the vertices
 	unsigned int vertexCount;
 	Vertex* vertices = generateVertices(vertexCount, m_triCount);
@@ -62,22 +48,32 @@ void Mesh::start()
 	//Enable vertex position as first attribute
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(
-		0,							//attribute index
-		4,							//number of values within attribute
-		GL_FLOAT,					//type of each value
-		GL_FALSE,					//whether to normalize
-		sizeof(Vertex),				//size in bytes of one vertex
-		0							//memory position of this attribute
+		0,								//attribute index
+		4,								//number of values within attribute
+		GL_FLOAT,						//type of each value
+		GL_FALSE,						//whether to normalize
+		sizeof(Vertex),					//size in bytes of one vertex
+		0								//memory position of this attribute
 	);
 	//Enable vertex color as second attribute
 	glEnableVertexAttribArray(1);
 	glVertexAttribPointer(
-		1,							//attribute index
-		4,							//number of values within attribute
-		GL_FLOAT,					//type of each value
-		GL_FALSE,					//whether to normalize
-		sizeof(Vertex),				//size in bytes of one vertex
-		(void*)sizeof(glm::vec4)	//memory position of this attribute
+		1,								//attribute index
+		4,								//number of values within attribute
+		GL_FLOAT,						//type of each value
+		GL_FALSE,						//whether to normalize
+		sizeof(Vertex),					//size in bytes of one vertex
+		(void*)sizeof(glm::vec4)		//memory position of this attribute
+	);
+	//Enable vertex Normal as third attribute
+	glEnableVertexAttribArray(2);
+	glVertexAttribPointer(
+		2,								//attribute index
+		4,								//number of values within attribute
+		GL_FLOAT,						//type of each value
+		GL_TRUE,						//whether to normalize
+		sizeof(Vertex),					//size in bytes of one vertex
+		(void*)(sizeof(glm::vec4) * 2)	//memory position of this attribute
 	);
 
 	//Unbind buffer and array
@@ -88,8 +84,9 @@ void Mesh::start()
 	delete[] vertices;
 }
 
-void Mesh::draw()
+void Mesh::draw(aie::ShaderProgram* shader)
 {
+	shader->bindUniform("modelMatrix", m_transform);
 	glBindVertexArray(m_vertexArrayObject);
 	glDrawArrays(GL_TRIANGLES, 0, m_triCount * 3);
 }

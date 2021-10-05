@@ -13,7 +13,6 @@ void main() {
 	vec3 lightNormal = normalize(lightDirection);
 
 	vec4 lightColor = vec4(0.8f, 0.2f, 0.2f, 1.0f);
-	lightNormal = normalize(vec3(-1.0f, -1.0f, -1.0f));
 
 	//color = ambientColor + diffuseColor + specularColor
 	//calculate diffuse color

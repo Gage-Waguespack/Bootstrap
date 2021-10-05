@@ -33,6 +33,7 @@ void World::update()
 
 void World::draw(aie::ShaderProgram* shader)
 {
+	shader->bindUniform("lightDirection", m_light.getDirection());
 	m_quad.draw(shader);
 }
 

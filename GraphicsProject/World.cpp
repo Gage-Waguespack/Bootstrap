@@ -14,11 +14,6 @@ void World::start()
 	m_quad.start();
 
 	//Create camera transform
-	//m_camera.setTransform(glm::lookAt(
-	//	glm::vec3(1.0f, 1.0f, 1.0f),
-	//	glm::vec3(0.0f),
-	//	glm::vec3(0.0f, 1.0f, 0.0f)
-	//));
 	m_camera.setPosition(glm::vec3(1.5f, 2.0f, 1.5f));
 	m_camera.setYaw(-135.0f);
 	m_camera.setPitch(-45.0f);
